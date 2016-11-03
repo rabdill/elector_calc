@@ -1,0 +1,300 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/lodash/4.16.6/lodash.min.js"></script>
+  </head>
+  <body>
+    <h2>Decided states</h2>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>
+            CLINTON
+          </th>
+          <th>
+            TRUMP
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr> 
+          <td>
+            <table id="clintonStates" border="1">
+              <tr>
+                <th>State</th>
+                <th>Electors</th>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table id="trumpStates" border="1">
+              <tr>
+                <th>State</th>
+                <th>Electors</th>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>TOTAL: <span id="clintonTotalDisplay"></span></td>
+          <td><strong>TOTAL: <span id="trumpTotalDisplay"></span></td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+<script>
+states = {
+  "Alabama": {
+    "electors" : 9,
+    "category": "strong red"
+  },
+  "Alaska": {
+    "electors" : 3,
+    "category": "probably red"
+  },
+  "Arizona": {
+    "electors": 11,
+    "category": "probably red"
+  },
+  "Arkansas": {
+    "electors": 6,
+    "category": "strong red"
+  },
+  "California": {
+    "electors": 55,
+    "category": "strong blue"
+  },
+  "Colorado": {
+    "electors": 9,
+    "category": "probably blue"
+  },
+  "Connecticut": {
+    "electors": 7,
+    "category": "strong blue"
+  },
+  "DC": {
+    "electors": 3,
+    "category": "strong blue"
+  },
+  "Delaware": {
+    "electors": 3,
+    "category": "strong blue"
+  },
+  "Florida": {
+    "electors": 29,
+    "category": "toss-up"
+  },
+  "Georgia": {
+    "electors": 16,
+    "category": "strong red"
+  },
+  "Hawaii": {
+    "electors": 4,
+    "category": "strong blue"
+  },
+  "Idaho": {
+    "electors": 4,
+    "category": "strong red"
+  },
+  "Illinois": {
+    "electors": 20,
+    "category": "strong blue"
+  },
+  "Indiana": {
+    "electors": 11,
+    "category": "strong red"
+  },
+  "Iowa": {
+    "electors": 6,
+    "category": "probably red"
+  },
+  "Kansas": {
+    "electors": 6,
+    "category": "strong red"
+  },
+  "Kentucky": {
+    "electors": 8,
+    "category": "strong red"
+  },
+  "Louisiana": {
+    "electors": 8,
+    "category": "strong red"
+  },
+  "Maine, at large": {
+    "electors": 2,
+    "category": "strong blue"
+  },
+  "Maine, District 1": {
+    "electors": 1,
+    "category": "strong blue"
+  },
+  "Maine, District 2": {
+    "electors": 1,
+    "category": "toss-up"
+  },
+  "Maryland": {
+    "electors": 10,
+    "category": "strong blue"
+  },
+  "Massachusetts": {
+    "electors": 11,
+    "category": "strong blue"
+  },
+  "Michigan": {
+    "electors": 16,
+    "category": "probably blue"
+  },
+  "Minnesota": {
+    "electors": 10,
+    "category": "strong blue"
+  },
+  "Mississippi": {
+    "electors": 6,
+    "category": "strong red"
+  },
+  "Missouri": {
+    "electors": 10,
+    "category": "strong red"
+  },
+  "Montana": {
+    "electors": 3,
+    "category": "strong red"
+  },
+  "Nebraska": {
+    "electors": 2,
+    "category": "strong red"
+  },
+  "Nebraska, District 1": {
+    "electors": 1,
+    "category": "strong red"
+  },
+  "Nebraska, District 2": {
+    "electors": 1,
+    "category": "probably red"
+  },
+  "Nebraska, District 3": {
+    "electors": 1,
+    "category": "strong red"
+  },
+  "Nevada": {
+    "electors": 6,
+    "category": "toss-up"
+  },
+  "New Hampshire": {
+    "electors": 4,
+    "category": "probably blue"
+  },
+  "New Jersey": {
+    "electors": 14,
+    "category": "strong blue"
+  },
+  "New Mexico": {
+    "electors": 5,
+    "category": "strong blue"
+  },
+  "New York": {
+    "electors": 29,
+    "category": "strong blue"
+  },
+  "North Carolina": {
+    "electors": 15,
+    "category": "toss-up"
+  },
+  "North Dakota": {
+    "electors": 3,
+    "category": "strong red"
+  },
+  "Ohio": {
+    "electors": 18,
+    "category": "probably red"
+  },
+  "Oklahoma": {
+    "electors": 7,
+    "category": "strong red"
+  },
+  "Oregon": {
+    "electors": 7,
+    "category": "strong blue"
+  },
+  "Pennsylvania": {
+    "electors": 20,
+    "category": "probably blue"
+  },
+  "Rhode Island": {
+    "electors": 4,
+    "category": "strong blue"
+  },
+  "South Carolina": {
+    "electors": 3,
+    "category": "strong red"
+  },
+  "South Dakota": {
+    "electors": 3,
+    "category": "strong red"
+  },
+  "Tennessee": {
+    "electors": 11,
+    "category": "strong red"
+  },
+  "Texas": {
+    "electors": 38,
+    "category": "strong red"
+  },
+  "Utah": {
+    "electors": 6,
+    "category": "probably red"
+  },
+  "Vermont": {
+    "electors": 3,
+    "category": "strong blue"
+  },
+  "Virginia": {
+    "electors": 13,
+    "category": "strong blue"
+  },
+  "Washington": {
+    "electors": 12,
+    "category": "strong blue"
+  },
+  "West Virginia": {
+    "electors": 5,
+    "category": "strong red"
+  },
+  "Wisconsin": {
+    "electors": 10,
+    "category": "probably blue"
+  },
+  "Wyoming": {
+    "electors": 3,
+    "category": "strong red"
+  }
+}
+
+var trumpTotal = 0, clintonTotal = 0;
+
+_.forIn(_.keys(states), function(state) {
+  if(!state.winner) return;
+  if(state.winner==="Clinton") {
+    toappend = document.getElementById("clintonStates");
+    clintonTotal += states[state].electors;
+  }
+  else /*if(state.winner==="Trump")*/ {
+    toappend = document.getElementById("trumpStates");
+    trumpTotal += states[state].electors;
+  }
+
+  toappend.innerHTML += "<tr><td>" + state + "<td>" + states[state].electors + "</td></tr>"
+});
+
+displayTarget = document.getElementById("clintonTotalDisplay");
+displayTarget.innerHTML = clintonTotal;
+displayTarget = document.getElementById("trumpTotalDisplay");
+displayTarget.innerHTML = trumpTotal;
+
+
+</script>
+  </body>
+</html>
