@@ -4,37 +4,47 @@
   </head>
   <body>
     <div>
-      <h2>Decided states</h2>
-      <table border="1">
-        <tr>
-          <th>
-            CLINTON
-          </th>
-          <th>
-            TRUMP
-          </th>
-        </tr>
-        <tr valign="top"> 
+      <table>
+        <tr valign="top">
           <td>
-            <table id="clintonStates" border="1">
+            <h2>Decided states</h2>
+            <table border="1">
               <tr>
-                <th>State</th>
-                <th>Electors</th>
+                <th>
+                  CLINTON
+                </th>
+                <th>
+                  TRUMP
+                </th>
+              </tr>
+              <tr valign="top"> 
+                <td>
+                  <table id="clintonStates" border="1">
+                    <tr>
+                      <th>State</th>
+                      <th>Electors</th>
+                    </tr>
+                  </table>
+                </td>
+                <td>
+                  <table id="trumpStates" border="1">
+                    <tr>
+                      <th>State</th>
+                      <th>Electors</th>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>TOTAL: <span id="clintonTotalDisplay"></span></strong></td>
+                <td><strong>TOTAL: <span id="trumpTotalDisplay"></span></strong></td>
               </tr>
             </table>
           </td>
           <td>
-            <table id="trumpStates" border="1">
-              <tr>
-                <th>State</th>
-                <th>Electors</th>
-              </tr>
-            </table>
+            <h2>Simulation results</h2>
+            <ul id="results"></ul>
           </td>
-        </tr>
-        <tr>
-          <td><strong>TOTAL: <span id="clintonTotalDisplay"></span></strong></td>
-          <td><strong>TOTAL: <span id="trumpTotalDisplay"></span></strong></td>
         </tr>
       </table>
     </div>
@@ -92,7 +102,6 @@
           </td>
         </tr>
     </div>
-
 
 
 
@@ -194,17 +203,17 @@ states = [
     "category": "strong red"
   },
   {
-    "name": "Maine, at large",
+    "name": "Maine statewide",
     "electors": 2,
     "category": "strong blue"
   },
   {
-    "name": "Maine, District 1",
+    "name": "Maine District 1",
     "electors": 1,
     "category": "strong blue"
   },
   {
-    "name": "Maine, District 2",
+    "name": "Maine District 2",
     "electors": 1,
     "category": "toss-up"
   },
@@ -244,22 +253,22 @@ states = [
     "category": "strong red"
   },
   {
-    "name": "Nebraska",
+    "name": "Nebraska statewide",
     "electors": 2,
     "category": "strong red"
   },
   {
-    "name": "Nebraska, District 1",
+    "name": "Nebraska District 1",
     "electors": 1,
     "category": "strong red"
   },
   {
-    "name": "Nebraska, District 2",
+    "name": "Nebraska District 2",
     "electors": 1,
     "category": "probably red"
   },
   {
-    "name": "Nebraska, District 3",
+    "name": "Nebraska District 3",
     "electors": 1,
     "category": "strong red"
   },
@@ -361,8 +370,7 @@ states = [
   {
     "name": "Washington",
     "electors": 12,
-    "category": "strong blue",
-    "winner": "clinton"
+    "category": "strong blue"
   },
   {
     "name": "West Virginia",
@@ -372,14 +380,12 @@ states = [
   {
     "name": "Wisconsin",
     "electors": 10,
-    "category": "probably blue",
-    "winner" : "trump"
+    "category": "probably blue"
   },
   {
     "name": "Wyoming",
     "electors": 3,
-    "category": "strong red",
-    "winner" : "trump"
+    "category": "strong red"
   }
 ];
 
@@ -399,6 +405,8 @@ _.forEach(states, function(state) {
 
   toappend.innerHTML += "<tr><td>" + state.name + "<td>" + state.electors + "</td></tr>"
 });
+
+
 // Print out the elector totals
 displayTarget = document.getElementById("clintonTotalDisplay");
 displayTarget.innerHTML = clintonTotal;
@@ -415,8 +423,56 @@ _.forEach(states, function(state) {
 });
 
 
+
+
+
 // START CLINTON SIM
-clintonSimTotal = clintonTotal;
+printResult = function(message) {
+  document.getElementById("results").innerHTML += "<li>" + message;
+};
+
+calculateElectors = function(candidate, corpus) {
+  returning = 0;
+  _.forEach(corpus, function(state) {
+    if(state.winner === candidate) returning += state.electors;
+  });
+  return returning;
+}
+
+simStates = JSON.parse(JSON.stringify(states));
+
+clintonSimTotal = calculateElectors("clinton", simStates);
+// if there are any "strong blue" states up in the air, give em to Clinton
+if(_.filter(simStates, {"category": "strong blue"}).length > 0) {
+  _.forEach(_.filter(simStates, {"category": "strong blue"}), function(state) {
+    if(!state.winner) state.winner = "clinton";
+  });
+
+  clintonSimTotal = calculateElectors("clinton", simStates);
+  printResult("With all remaining 'strong blue' states: " + clintonSimTotal);
+}
+
+// if she still needs electors
+if(clintonSimTotal < 270) {
+  // if there are any "probably blue" states up in the air, give em to Clinton
+  if(_.filter(simStates, {"category": "probably blue"}).length > 0) {
+    _.forEach(_.filter(simStates, {"category": "probably blue"}), function(state) {
+      if(!state.winner) state.winner = "clinton";
+    });
+
+    function calculateElectors(candidate, corpus) {
+      returning = 0;
+      _.forEach(corpus, function(state) {
+        if(state.winner === candidate) returning += state.electors;
+      });
+      return returning;
+    }
+    clintonSimTotal = calculateElectors("clinton", simStates);
+    printResult("With all remaining 'probably blue' states: " + clintonSimTotal);
+  }
+}
+
+
 
 
 </script>
