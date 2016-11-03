@@ -510,7 +510,7 @@ function clintonsim() {
         return returning;
       }
       clintonSimTotal = calculateElectors("clinton", simStates);
-      printResult("With all remaining 'probably blue' states: " + clintonSimTotal);
+      printResult("With all remaining 'strong blue' and 'probably blue' states: " + clintonSimTotal);
     }
   }
 
@@ -524,6 +524,7 @@ function clintonsim() {
     descendingForGrabs = _.reverse(sortedUpForGrabs);
     options = []
     _.forEach(descendingForGrabs, function(state) {
+      console.log("Checkin on " + state.name);
       total = state.electors;
       if(total >= needed) options.push(state);
       else {  // if one won't do it, keep grabbin' em
@@ -536,6 +537,26 @@ function clintonsim() {
           if(total >= needed) {
             options.push(combo);
             break;
+          }
+        }
+        // try it again in the other direction too
+        // (this blocks situations where a small state is too small
+        //  to make a difference, and the next-largest one will do
+        // it on its own. i.e. if you need 20 votes, NC and NV will
+        // do it, but the list would always run into NC and ME and NV
+        // first.)
+        combo = [state];
+        total = state.electors;
+        for(var i = 0; i < descendingForGrabs.length; i++) {
+          if(descendingForGrabs[i] === state) continue;
+          total += descendingForGrabs[i].electors;
+          combo.push(descendingForGrabs[i]);
+          console.log(combo);
+          if(total >= needed) {
+            console.log("YEAHHH")
+            options.push(combo);
+            combo = [state];  // try it again with the next one
+            total = state.electors;
           }
         }
       }
@@ -554,7 +575,7 @@ function clintonsim() {
       // filter out any combos that require a state that's already
       // on the list by itself
       // for example: if "nevada" is on the list, "maine and nevada"
-      //    doesn't need to be. we need nevada either way.
+      //    doesn't need to be. we'd need nevada either way.
       for(var i=0; i < options.length; i++) {
         if(Array.isArray(options[i])) {
           for(var j = 0; j < options[i].length; j++) {
@@ -583,8 +604,6 @@ function clintonsim() {
         if(!_.includes(alreadySaid, statestring) && statestring !== undefined) {
           alreadySaid.push(statestring);
           printResult("Can pass 270 winning " + statestring);
-        } else {
-          console.log("Skipping printing toss-up option: " + statestring);
         }
       }
     }
