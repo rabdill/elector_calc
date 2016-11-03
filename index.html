@@ -97,249 +97,307 @@
 
 
 <script>
-states = {
-  "Alabama": {
+states = [
+  {
+    "name": "Alabama",
     "electors" : 9,
     "category": "strong red"
   },
-  "Alaska": {
+  {
+    "name": "Alaska",
     "electors" : 3,
     "category": "probably red"
   },
-  "Arizona": {
+  {
+    "name": "Arizona",
     "electors": 11,
     "category": "probably red"
   },
-  "Arkansas": {
+  {
+    "name": "Arkansas",
     "electors": 6,
     "category": "strong red"
   },
-  "California": {
+  {
+    "name": "California",
     "electors": 55,
     "category": "strong blue"
   },
-  "Colorado": {
+  {
+    "name": "Colorado",
     "electors": 9,
     "category": "probably blue"
   },
-  "Connecticut": {
+  {
+    "name": "Connecticut",
     "electors": 7,
     "category": "strong blue"
   },
-  "DC": {
+  {
+    "name": "DC",
     "electors": 3,
     "category": "strong blue"
   },
-  "Delaware": {
+  {
+    "name": "Delaware",
     "electors": 3,
     "category": "strong blue"
   },
-  "Florida": {
+  {
+    "name": "Florida",
     "electors": 29,
     "category": "toss-up"
   },
-  "Georgia": {
+  {
+    "name": "Georgia",
     "electors": 16,
     "category": "strong red"
   },
-  "Hawaii": {
+  {
+    "name": "Hawaii",
     "electors": 4,
     "category": "strong blue"
   },
-  "Idaho": {
+  {
+    "name": "Idaho",
     "electors": 4,
     "category": "strong red"
   },
-  "Illinois": {
+  {
+    "name": "Illinois",
     "electors": 20,
     "category": "strong blue"
   },
-  "Indiana": {
+  {
+    "name": "Indiana",
     "electors": 11,
     "category": "strong red"
   },
-  "Iowa": {
+  {
+    "name": "Iowa",
     "electors": 6,
     "category": "probably red"
   },
-  "Kansas": {
+  {
+    "name": "Kansas",
     "electors": 6,
     "category": "strong red"
   },
-  "Kentucky": {
+  {
+    "name": "Kentucky",
     "electors": 8,
     "category": "strong red"
   },
-  "Louisiana": {
+  {
+    "name": "Louisiana",
     "electors": 8,
     "category": "strong red"
   },
-  "Maine, at large": {
+  {
+    "name": "Maine, at large",
     "electors": 2,
     "category": "strong blue"
   },
-  "Maine, District 1": {
+  {
+    "name": "Maine, District 1",
     "electors": 1,
     "category": "strong blue"
   },
-  "Maine, District 2": {
+  {
+    "name": "Maine, District 2",
     "electors": 1,
     "category": "toss-up"
   },
-  "Maryland": {
+  {
+    "name": "Maryland",
     "electors": 10,
     "category": "strong blue"
   },
-  "Massachusetts": {
+  {
+    "name": "Massachusetts",
     "electors": 11,
     "category": "strong blue"
   },
-  "Michigan": {
+  {
+    "name": "Michigan",
     "electors": 16,
     "category": "probably blue"
   },
-  "Minnesota": {
+  {
+    "name": "Minnesota",
     "electors": 10,
     "category": "strong blue"
   },
-  "Mississippi": {
+  {
+    "name": "Mississippi",
     "electors": 6,
     "category": "strong red"
   },
-  "Missouri": {
+  {
+    "name": "Missouri",
     "electors": 10,
     "category": "strong red"
   },
-  "Montana": {
+  {
+    "name": "Montana",
     "electors": 3,
     "category": "strong red"
   },
-  "Nebraska": {
+  {
+    "name": "Nebraska",
     "electors": 2,
     "category": "strong red"
   },
-  "Nebraska, District 1": {
+  {
+    "name": "Nebraska, District 1",
     "electors": 1,
     "category": "strong red"
   },
-  "Nebraska, District 2": {
+  {
+    "name": "Nebraska, District 2",
     "electors": 1,
     "category": "probably red"
   },
-  "Nebraska, District 3": {
+  {
+    "name": "Nebraska, District 3",
     "electors": 1,
     "category": "strong red"
   },
-  "Nevada": {
+  {
+    "name": "Nevada",
     "electors": 6,
     "category": "toss-up"
   },
-  "New Hampshire": {
+  {
+    "name": "New Hampshire",
     "electors": 4,
     "category": "probably blue"
   },
-  "New Jersey": {
+  {
+    "name": "New Jersey",
     "electors": 14,
     "category": "strong blue"
   },
-  "New Mexico": {
+  {
+    "name": "New Mexico",
     "electors": 5,
     "category": "strong blue"
   },
-  "New York": {
+  {
+    "name": "New York",
     "electors": 29,
     "category": "strong blue"
   },
-  "North Carolina": {
+  {
+    "name": "North Carolina",
     "electors": 15,
     "category": "toss-up"
   },
-  "North Dakota": {
+  {
+    "name": "North Dakota",
     "electors": 3,
     "category": "strong red"
   },
-  "Ohio": {
+  {
+    "name": "Ohio",
     "electors": 18,
     "category": "probably red"
   },
-  "Oklahoma": {
+  {
+    "name": "Oklahoma",
     "electors": 7,
     "category": "strong red"
   },
-  "Oregon": {
+  {
+    "name": "Oregon",
     "electors": 7,
     "category": "strong blue"
   },
-  "Pennsylvania": {
+  {
+    "name": "Pennsylvania",
     "electors": 20,
     "category": "probably blue"
   },
-  "Rhode Island": {
+  {
+    "name": "Rhode Island",
     "electors": 4,
     "category": "strong blue"
   },
-  "South Carolina": {
+  {
+    "name": "South Carolina",
     "electors": 3,
     "category": "strong red"
   },
-  "South Dakota": {
+  {
+    "name": "South Dakota",
     "electors": 3,
     "category": "strong red"
   },
-  "Tennessee": {
+  {
+    "name": "Tennessee",
     "electors": 11,
     "category": "strong red"
   },
-  "Texas": {
+  {
+    "name": "Texas",
     "electors": 38,
     "category": "strong red"
   },
-  "Utah": {
+  {
+    "name": "Utah",
     "electors": 6,
     "category": "probably red"
   },
-  "Vermont": {
+  {
+    "name": "Vermont",
     "electors": 3,
     "category": "strong blue"
   },
-  "Virginia": {
+  {
+    "name": "Virginia",
     "electors": 13,
     "category": "strong blue"
   },
-  "Washington": {
+  {
+    "name": "Washington",
     "electors": 12,
-    "category": "strong blue"
+    "category": "strong blue",
+    "winner": "clinton"
   },
-  "West Virginia": {
+  {
+    "name": "West Virginia",
     "electors": 5,
     "category": "strong red"
   },
-  "Wisconsin": {
+  {
+    "name": "Wisconsin",
     "electors": 10,
     "category": "probably blue",
-    "winner" : "Trump"
+    "winner" : "trump"
   },
-  "Wyoming": {
+  {
+    "name": "Wyoming",
     "electors": 3,
-    "category": "strong red"
+    "category": "strong red",
+    "winner" : "trump"
   }
-}
+];
 
 var trumpTotal = 0, clintonTotal = 0;
 
 // Add up all the currently decided states
-_.forIn(_.keys(states), function(state) {
-  if(!states[state].winner) return;
-  if(states[state].winner==="Clinton") {
+_.forEach(states, function(state) {
+  if(!state.winner) return;
+  if(state.winner==="clinton") {
     toappend = document.getElementById("clintonStates");
-    clintonTotal += states[state].electors;
+    clintonTotal += state.electors;
   }
   else /*if(state.winner==="Trump")*/ {
     toappend = document.getElementById("trumpStates");
-    trumpTotal += states[state].electors;
+    trumpTotal += state.electors;
   }
 
-  toappend.innerHTML += "<tr><td>" + state + "<td>" + states[state].electors + "</td></tr>"
+  toappend.innerHTML += "<tr><td>" + state.name + "<td>" + state.electors + "</td></tr>"
 });
 // Print out the elector totals
 displayTarget = document.getElementById("clintonTotalDisplay");
@@ -349,12 +407,17 @@ displayTarget.innerHTML = trumpTotal;
 
 
 // Print the undecided states into their columns
-_.keys(states).forEach(function(state) {
-  if(states[state].winner) return;
+_.forEach(states, function(state) {
+  if(state.winner) return;
 
-  displayTarget = document.getElementById(states[state].category);
-  displayTarget.innerHTML += "<tr><td>" + state + "<td>" + states[state].electors + "</td></tr>"
+  displayTarget = document.getElementById(state.category);
+  displayTarget.innerHTML += "<tr><td>" + state.name + "<td>" + state.electors + "</td></tr>"
 });
+
+
+// START CLINTON SIM
+clintonSimTotal = clintonTotal;
+
 
 </script>
   </body>
