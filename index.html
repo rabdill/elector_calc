@@ -3,11 +3,13 @@
     <script src="https://cdn.jsdelivr.net/lodash/4.16.6/lodash.min.js"></script>
   </head>
   <body>
+    <h1>Hillary Clinton electoral calculator</h1>
     <div>
-      <table>
+      <table border="1">
         <tr valign="top">
           <td>
             <h2>Decided states</h2>
+            <i>This table will update with states as the results are called.</i>
             <table border="1">
               <tr>
                 <th>
@@ -51,6 +53,7 @@
 
     <div>
       <h2>Undecided states</h2>
+      <i>Check the box next to a state's name to simulate an upset in that state. Check the box next to a toss-up state to give that state to Clinton.</i>
       <table border=1>
         <tr>
           <th>Strong blue</th>
@@ -419,61 +422,128 @@ _.forEach(states, function(state) {
   if(state.winner) return;
 
   displayTarget = document.getElementById(state.category);
-  displayTarget.innerHTML += "<tr><td>" + state.name + "<td>" + state.electors + "</td></tr>"
+  displayTarget.innerHTML += "<tr><td><input type='checkbox' id='upset" + state.name + "'>" + state.name + "<td>" + state.electors + "</tr>";
 });
 
 
 
 
 
-// START CLINTON SIM
-printResult = function(message) {
-  document.getElementById("results").innerHTML += "<li>" + message;
-};
+// ********************************
+function clintonsim() {
+  document.getElementById("results").innerHTML = "";
 
-calculateElectors = function(candidate, corpus) {
-  returning = 0;
-  _.forEach(corpus, function(state) {
-    if(state.winner === candidate) returning += state.electors;
+  printResult = function(message) {
+    document.getElementById("results").innerHTML += "<li>" + message;
+  };
+
+  calculateElectors = function(candidate, corpus) {
+    returning = 0;
+    _.forEach(corpus, function(state) {
+      if(state.winner === candidate) returning += state.electors;
+    });
+    return returning;
+  }
+
+  simStates = JSON.parse(JSON.stringify(states));
+
+  // process any specifically requested upsets
+  trumpUpset = "<i>Simulating Trump upset in ";
+  clintonUpset = "<i>Simulating Clinton upset in ";
+  clintonTossup = "<i>Simulating Clinton winning toss-up in ";
+  printTrumpUpset = false;
+  printClintonUpset = false;
+  printTossup = false;
+  _.forEach(simStates, function(state) {
+    upsetCheck = document.getElementById("upset" + state.name);
+    if(upsetCheck.checked) {
+      switch(state.category) {
+        case "strong blue":
+        case "probably blue":
+          state.winner = "trump"
+          trumpUpset += state.name + ", ";
+          printTrumpUpset = true;
+          break;
+        case "strong red":
+        case "probably red":
+          state.winner = "clinton";
+          clintonUpset += state.name + ", ";
+          printClintonUpset = true;
+          break;
+        case "toss-up":
+          state.winner = "clinton";
+          clintonTossup += state.name + ", ";
+          printTossup = true;
+          break;
+      }
+    }
   });
-  return returning;
-}
+  if(printTrumpUpset) printResult(trumpUpset + "</i>");
+  if(printClintonUpset) printResult(clintonUpset + "</i>");
+  if(printTossup) printResult(clintonTossup + "</i>");
 
-simStates = JSON.parse(JSON.stringify(states));
-
-clintonSimTotal = calculateElectors("clinton", simStates);
-// if there are any "strong blue" states up in the air, give em to Clinton
-if(_.filter(simStates, {"category": "strong blue"}).length > 0) {
-  _.forEach(_.filter(simStates, {"category": "strong blue"}), function(state) {
-    if(!state.winner) state.winner = "clinton";
-  });
 
   clintonSimTotal = calculateElectors("clinton", simStates);
-  printResult("With all remaining 'strong blue' states: " + clintonSimTotal);
-}
-
-// if she still needs electors
-if(clintonSimTotal < 270) {
-  // if there are any "probably blue" states up in the air, give em to Clinton
-  if(_.filter(simStates, {"category": "probably blue"}).length > 0) {
-    _.forEach(_.filter(simStates, {"category": "probably blue"}), function(state) {
+  // if there are any "strong blue" states up in the air, give em to Clinton
+  if(_.filter(simStates, {"category": "strong blue"}).length > 0) {
+    _.forEach(_.filter(simStates, {"category": "strong blue"}), function(state) {
       if(!state.winner) state.winner = "clinton";
     });
 
-    function calculateElectors(candidate, corpus) {
-      returning = 0;
-      _.forEach(corpus, function(state) {
-        if(state.winner === candidate) returning += state.electors;
-      });
-      return returning;
-    }
     clintonSimTotal = calculateElectors("clinton", simStates);
-    printResult("With all remaining 'probably blue' states: " + clintonSimTotal);
+    printResult("With all remaining 'strong blue' states: " + clintonSimTotal);
   }
-}
+
+  // if she still needs electors after the strong blues
+  if(clintonSimTotal < 270) {
+    // if there are any "probably blue" states up in the air, give em to Clinton
+    if(_.filter(simStates, {"category": "probably blue"}).length > 0) {
+      _.forEach(_.filter(simStates, {"category": "probably blue"}), function(state) {
+        if(!state.winner) state.winner = "clinton";
+      });
+
+      function calculateElectors(candidate, corpus) {
+        returning = 0;
+        _.forEach(corpus, function(state) {
+          if(state.winner === candidate) returning += state.electors;
+        });
+        return returning;
+      }
+      clintonSimTotal = calculateElectors("clinton", simStates);
+      printResult("With all remaining 'probably blue' states: " + clintonSimTotal);
+    }
+  }
+
+  // if she still needs electors after the probably blues
+  if(clintonSimTotal < 270) {
+    // if there are any "probably blue" states up in the air, give em to Clinton
+    if(_.filter(simStates, {"category": "probably blue"}).length > 0) {
+      _.forEach(_.filter(simStates, {"category": "probably blue"}), function(state) {
+        if(!state.winner) state.winner = "clinton";
+      });
+
+      function calculateElectors(candidate, corpus) {
+        returning = 0;
+        _.forEach(corpus, function(state) {
+          if(state.winner === candidate) returning += state.electors;
+        });
+        return returning;
+      }
+      clintonSimTotal = calculateElectors("clinton", simStates);
+      printResult("With all remaining 'probably blue' states: " + clintonSimTotal);
+    }
+  }
 
 
+} // end of clintonsim()
 
+clintonsim();
+
+
+document.onclick= function(event) {
+   console.log("Re-running simulation.");
+   clintonsim();
+};
 
 </script>
   </body>
