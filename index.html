@@ -514,25 +514,62 @@ function clintonsim() {
     }
   }
 
-  // if she still needs electors after the probably blues
+  // if she still needs electors after the probably blues,
+  // figure out which toss-ups will do it
   if(clintonSimTotal < 270) {
-    // if there are any "probably blue" states up in the air, give em to Clinton
-    if(_.filter(simStates, {"category": "probably blue"}).length > 0) {
-      _.forEach(_.filter(simStates, {"category": "probably blue"}), function(state) {
-        if(!state.winner) state.winner = "clinton";
-      });
-
-      function calculateElectors(candidate, corpus) {
-        returning = 0;
-        _.forEach(corpus, function(state) {
-          if(state.winner === candidate) returning += state.electors;
-        });
-        return returning;
+    needed = 270 - clintonSimTotal;
+    // get sorted list of available 'strong blues'
+    sortedUpForGrabs = _.sortBy(_.filter(simStates, {"category": "toss-up"}), 'electors');
+    sortedUpForGrabs = _.filter(sortedUpForGrabs, function(state) {return state.winner===undefined;});
+    descendingForGrabs = _.reverse(sortedUpForGrabs);
+    options = []
+    _.forEach(descendingForGrabs, function(state) {
+      total = state.electors;
+      if(total >= needed) options.push(state);
+      else {  // if one won't do it, keep grabbin' em
+        combo = [state];
+        // start by adding the smallest states
+        for(var i = descendingForGrabs.length - 1; i >= 0; i--) {
+          if(descendingForGrabs[i] === state) continue;
+          total += descendingForGrabs[i].electors;
+          combo.push(descendingForGrabs[i]);
+          if(total >= needed) {
+            options.push(combo);
+            break;
+          }
+        }
       }
-      clintonSimTotal = calculateElectors("clinton", simStates);
-      printResult("With all remaining 'probably blue' states: " + clintonSimTotal);
+    });
+    if(options.length > 0) {
+      // throw out the arrays that are identical but in
+      // a different order
+      console.log(options);
+      console.log("zzz");
+      options = _.forEach(options, function(optionSet) {
+        if(!Array.isArray(optionSet)) return optionSet;
+        return _.orderBy(optionSet, ["electors", "name"]);
+      });
+      console.log(options);
+      options = _.uniq(options);
+
+
+      // the bottom half of the array will be duplicates of the top half
+      for(var i = 0; i < options.length; i++) {
+        if(Array.isArray(options[i])) {
+          statestring = ""
+          for(var j = 0; j < options[i].length; j++) {
+            statestring += options[i][j].name;
+            if(j !== options[i].length - 1) statestring += " and "
+          }
+        } else {
+          statestring = options[i].name;
+        }
+        printResult("Can pass 270 winning " + statestring);
+      }
     }
   }
+
+
 
 
 } // end of clintonsim()
