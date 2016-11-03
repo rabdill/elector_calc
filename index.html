@@ -541,19 +541,33 @@ function clintonsim() {
       }
     });
     if(options.length > 0) {
-      // throw out the arrays that are identical but in
-      // a different order
-      console.log(options);
-      console.log("zzz");
-      options = _.forEach(options, function(optionSet) {
-        if(!Array.isArray(optionSet)) return optionSet;
-        return _.orderBy(optionSet, ["electors", "name"]);
-      });
-      console.log(options);
-      options = _.uniq(options);
+      // order all the combos by state size
+      singleStateOptions = []
+      for(var i=0; i < options.length; i++) {
+        if(Array.isArray(options[i])) {
+          options[i] = _.orderBy(options[i], "electors");
+        } else {
+          singleStateOptions.push(options[i]);
+        }
+      }
 
+      // filter out any combos that require a state that's already
+      // on the list by itself
+      // for example: if "nevada" is on the list, "maine and nevada"
+      //    doesn't need to be. we need nevada either way.
+      for(var i=0; i < options.length; i++) {
+        if(Array.isArray(options[i])) {
+          for(var j = 0; j < options[i].length; j++) {
+            if(_.includes(singleStateOptions, options[i][j])) {
+              options[i] = "";
+              break;
+            }
+          }
+        }
+      }
 
-      // the bottom half of the array will be duplicates of the top half
+      alreadySaid = [];
+
       for(var i = 0; i < options.length; i++) {
         if(Array.isArray(options[i])) {
           statestring = ""
@@ -564,7 +578,14 @@ function clintonsim() {
         } else {
           statestring = options[i].name;
         }
-        printResult("Can pass 270 winning " + statestring);
+        // only print the combo if it's not a duplicate
+        // and if it wasn't blanked out by checks above
+        if(!_.includes(alreadySaid, statestring) && statestring !== undefined) {
+          alreadySaid.push(statestring);
+          printResult("Can pass 270 winning " + statestring);
+        } else {
+          console.log("Skipping printing toss-up option: " + statestring);
+        }
       }
     }
   }
