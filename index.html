@@ -3,9 +3,9 @@
     <script src="https://cdn.jsdelivr.net/lodash/4.16.6/lodash.min.js"></script>
   </head>
   <body>
-    <h2>Decided states</h2>
-    <table border="1">
-      <thead>
+    <div>
+      <h2>Decided states</h2>
+      <table border="1">
         <tr>
           <th>
             CLINTON
@@ -14,9 +14,7 @@
             TRUMP
           </th>
         </tr>
-      </thead>
-      <tbody>
-        <tr> 
+        <tr valign="top"> 
           <td>
             <table id="clintonStates" border="1">
               <tr>
@@ -35,12 +33,65 @@
           </td>
         </tr>
         <tr>
-          <td><strong>TOTAL: <span id="clintonTotalDisplay"></span></td>
-          <td><strong>TOTAL: <span id="trumpTotalDisplay"></span></td>
+          <td><strong>TOTAL: <span id="clintonTotalDisplay"></span></strong></td>
+          <td><strong>TOTAL: <span id="trumpTotalDisplay"></span></strong></td>
         </tr>
-      </tbody>
-    </table>
+      </table>
+    </div>
 
+    <div>
+      <h2>Undecided states</h2>
+      <table border=1>
+        <tr>
+          <th>Strong blue</th>
+          <th>Probably blue</th>
+          <th>Toss-up</th>
+          <th>Probably red</th>
+          <th>Strong red</th>
+        </tr>
+        <tr valign="top">
+          <td>
+            <table border="1" id="strong blue">
+              <tr>
+                <th>State</th>
+                <th>Electors</th>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table border="1" id="probably blue">
+              <tr>
+                <th>State</th>
+                <th>Electors</th>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table border="1" id="toss-up">
+              <tr>
+                <th>State</th>
+                <th>Electors</th>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table border="1" id="probably red">
+              <tr>
+                <th>State</th>
+                <th>Electors</th>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table border="1" id="strong red">
+              <tr>
+                <th>State</th>
+                <th>Electors</th>
+              </tr>
+            </table>
+          </td>
+        </tr>
+    </div>
 
 
 
@@ -265,7 +316,8 @@ states = {
   },
   "Wisconsin": {
     "electors": 10,
-    "category": "probably blue"
+    "category": "probably blue",
+    "winner" : "Trump"
   },
   "Wyoming": {
     "electors": 3,
@@ -275,9 +327,10 @@ states = {
 
 var trumpTotal = 0, clintonTotal = 0;
 
+// Add up all the currently decided states
 _.forIn(_.keys(states), function(state) {
-  if(!state.winner) return;
-  if(state.winner==="Clinton") {
+  if(!states[state].winner) return;
+  if(states[state].winner==="Clinton") {
     toappend = document.getElementById("clintonStates");
     clintonTotal += states[state].electors;
   }
@@ -288,12 +341,20 @@ _.forIn(_.keys(states), function(state) {
 
   toappend.innerHTML += "<tr><td>" + state + "<td>" + states[state].electors + "</td></tr>"
 });
-
+// Print out the elector totals
 displayTarget = document.getElementById("clintonTotalDisplay");
 displayTarget.innerHTML = clintonTotal;
 displayTarget = document.getElementById("trumpTotalDisplay");
 displayTarget.innerHTML = trumpTotal;
 
+
+// Print the undecided states into their columns
+_.keys(states).forEach(function(state) {
+  if(states[state].winner) return;
+
+  displayTarget = document.getElementById(states[state].category);
+  displayTarget.innerHTML += "<tr><td>" + state + "<td>" + states[state].electors + "</td></tr>"
+});
 
 </script>
   </body>
