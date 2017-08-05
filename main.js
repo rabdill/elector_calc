@@ -31,19 +31,27 @@ _.forEach(states, function(state) {
   displayTarget.innerHTML += "<tr><td><input type='checkbox' id='upset" + state.name + "'>" + state.name + "<td>" + state.electors + "</tr>";
 });
 
+if(clintonTotal >= 270) setWinner("Hillary Clinton", clintonTotal);
+if(trumpTotal >= 270) setWinner("Donald Trump", trumpTotal);
 
-// ************ Display if Clinton wins
-if(clintonTotal >= 270) {
-  document.getElementById("victoryTotal").innerHTML = clintonTotal;
-  document.getElementById("victory").style="";
+function setWinner(winner, totalElectors) {
+  document.getElementById("winner").innerHTML = winner.toUpperCase();
+  switch(winner) {
+    case "Donald Trump":
+      loser = "Clinton";
+      break;
+    case "Hillary Clinton":
+      loser = "Trump";
+      break;
+  };
+  document.getElementById("loser").innerHTML = loser;
+  document.getElementById("victoryTotal").innerHTML = totalElectors;
+  document.getElementById("victory").style = "";
 }
 
 
-
-
-
 // ********************************
-function clintonsim() {
+function electorsim() {
   document.getElementById("results").innerHTML = "";
 
   printResult = function(message) {
@@ -318,7 +326,7 @@ function clintonsim() {
 
 } // end of clintonsim()
 
-clintonsim();
+electorsim();
 
 
 document.onclick = function(event) {
