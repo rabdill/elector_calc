@@ -7,9 +7,9 @@
       <p>I'm done updating this thing.
       <br>
     </div>
-    <h1>2016 electoral college calculator</h1>
+    <h1>2020 electoral college calculator</h1>
 
-    <div>Last update: <strong>12:28am EST</strong>
+    <div>Last update: <strong>22 Oct 2020</strong>
 
     </div>
 
@@ -24,19 +24,19 @@
             <table>
               <tr>
                 <th>
-                  CLINTON
+                  BIDEN
                 </th>
                 <th>
                   TRUMP
                 </th>
               </tr>
               <tr>
-                <td><strong>TOTAL: <span id="clintonTotalDisplay"></span></strong></td>
-                <td><strong>TOTAL: <span id="trumpTotalDisplay"></span></strong></td>
+                <td><strong>TOTAL: <span id="blueTotalDisplay"></span></strong></td>
+                <td><strong>TOTAL: <span id="redTotalDisplay"></span></strong></td>
               </tr>
               <tr valign="top">
                 <td>
-                  <table id="clintonStates" border="1">
+                  <table id="blueStates" border="1">
                     <tr>
                       <th>State</th>
                       <th>Electors</th>
@@ -44,7 +44,7 @@
                   </table>
                 </td>
                 <td>
-                  <table id="trumpStates" border="1">
+                  <table id="redStates" border="1">
                     <tr>
                       <th>State</th>
                       <th>Electors</th>
@@ -55,7 +55,7 @@
             </table>
           </td>
           <td>
-            <h2>Simulation results, Clinton:</h2>
+            <h2>Simulation results, Biden:</h2>
             <ul id="results"></ul>
           </td>
         </tr>
@@ -64,12 +64,14 @@
 
     <div>
       <h2>Undecided states</h2>
-      <i>Check the box next to a state's name to simulate an upset in that state. Check the box next to a toss-up state to give that state to Clinton.</i>
+      <i>Check the box next to a state's name to simulate an upset in that state. Check the box next to a toss-up state to give that state to Biden.</i>
       <table>
         <tr>
           <th>Strong blue</th>
           <th>Probably blue</th>
+          <th>Lean blue</th>
           <th>Toss-up</th>
+          <th>Lean red</th>
           <th>Probably red</th>
           <th>Strong red</th>
         </tr>
@@ -86,7 +88,15 @@
             <table border="1" id="probably blue">
               <tr>
                 <th>State</th>
-                <th>Electors</th>
+                <th></th>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table border="1" id="lean blue">
+              <tr>
+                <th>State</th>
+                <th></th>
               </tr>
             </table>
           </td>
@@ -94,7 +104,15 @@
             <table border="1" id="toss-up">
               <tr>
                 <th>State</th>
-                <th>Electors</th>
+                <th></th>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table border="1" id="lean red">
+              <tr>
+                <th>State</th>
+                <th></th>
               </tr>
             </table>
           </td>
@@ -102,7 +120,7 @@
             <table border="1" id="probably red">
               <tr>
                 <th>State</th>
-                <th>Electors</th>
+                <th></th>
               </tr>
             </table>
           </td>
@@ -110,7 +128,7 @@
             <table border="1" id="strong red">
               <tr>
                 <th>State</th>
-                <th>Electors</th>
+                <th></th>
               </tr>
             </table>
           </td>

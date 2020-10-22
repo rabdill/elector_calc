@@ -1,25 +1,25 @@
-var trumpTotal = 0, clintonTotal = 0;
+var redTotal = 0, blueTotal = 0;
 
 // Add up all the currently decided states
 _.forEach(states, function(state) {
   if(!state.winner) return;
-  if(state.winner==="clinton") {
-    toappend = document.getElementById("clintonStates");
-    clintonTotal += state.electors;
+  if(state.winner==="blue") {
+    toappend = document.getElementById("blueStates");
+    blueTotal += state.electors;
   }
-  else /*if(state.winner==="Trump")*/ {
-    toappend = document.getElementById("trumpStates");
-    trumpTotal += state.electors;
+  else {
+    toappend = document.getElementById("redStates");
+    redTotal += state.electors;
   }
   toappend.innerHTML += "<tr><td>" + state.name + "<td>" + state.electors + "</td></tr>"
 });
 
 
 // Print out the elector totals
-displayTarget = document.getElementById("clintonTotalDisplay");
-displayTarget.innerHTML = clintonTotal;
-displayTarget = document.getElementById("trumpTotalDisplay");
-displayTarget.innerHTML = trumpTotal;
+displayTarget = document.getElementById("blueTotalDisplay");
+displayTarget.innerHTML = blueTotal;
+displayTarget = document.getElementById("redTotalDisplay");
+displayTarget.innerHTML = redTotal;
 
 
 // Print the undecided states into their columns
@@ -30,16 +30,16 @@ _.forEach(states, function(state) {
   displayTarget.innerHTML += "<tr><td><input type='checkbox' id='upset" + state.name + "'>" + state.name + "<td>" + state.electors + "</tr>";
 });
 
-if(clintonTotal >= 270) setWinner("Hillary Clinton", clintonTotal);
-if(trumpTotal >= 270) setWinner("Donald Trump", trumpTotal);
+if(blueTotal >= 270) setWinner("Joe Biden", blueTotal);
+if(redTotal >= 270) setWinner("Donald Trump", redTotal);
 
 function setWinner(winner, totalElectors) {
   document.getElementById("winner").innerHTML = winner.toUpperCase();
   switch(winner) {
     case "Donald Trump":
-      loser = "Clinton";
+      loser = "Biden";
       break;
-    case "Hillary Clinton":
+    case "Joe Biden":
       loser = "Trump";
       break;
   };
@@ -62,20 +62,20 @@ printResult = function(message) {
 };
 
 // ********************************
-function clintonSim() {
+function blueSim() {
   // blank out the unordered list of determinations
   document.getElementById("results").innerHTML = "";
 
   simStates = JSON.parse(JSON.stringify(states)); // deep copy
 
   // process any specifically requested upsets
-  trumpUpset = "<i>Simulating Trump upset in ";
-  clintonUpset = "<i>Simulating Clinton upset in ";
-  clintonTossup = "<i>Simulating Clinton winning toss-up in ";
+  redUpset = "<i>Simulating Trump upset in ";
+  blueUpset = "<i>Simulating Biden upset in ";
+  blueTossup = "<i>Simulating Biden winning toss-up in ";
 
   // flags for tracking who wins the upset:
-  printTrumpUpset = false;
-  printClintonUpset = false;
+  printRedUpset = false;
+  printBlueUpset = false;
   printTossup = false;
 
   _.forEach(simStates, function(state) {
@@ -86,65 +86,83 @@ function clintonSim() {
       switch(state.category) {
         case "strong blue":
         case "probably blue":
-          state.winner = "trump"
-          trumpUpset += state.name + ", ";
-          printTrumpUpset = true;
+        case "lean blue":
+          state.winner = "red"
+          redUpset += state.name + ", ";
+          printRedUpset = true;
           break;
         case "strong red":
         case "probably red":
-          state.winner = "clinton";
-          clintonUpset += state.name + ", ";
-          printClintonUpset = true;
+        case "lean red":
+          state.winner = "blue";
+          blueUpset += state.name + ", ";
+          printBlueUpset = true;
           break;
         case "toss-up":
-          state.winner = "clinton";
-          clintonTossup += state.name + ", ";
+          state.winner = "blue";
+          blueTossup += state.name + ", ";
           printTossup = true;
           break;
       }
     }
   });
-  if(printTrumpUpset) printResult(trumpUpset + "</i>");
-  if(printClintonUpset) printResult(clintonUpset + "</i>");
-  if(printTossup) printResult(clintonTossup + "</i>");
+  if(printRedUpset) printResult(redUpset + "</i>");
+  if(printBlueUpset) printResult(blueUpset + "</i>");
+  if(printTossup) printResult(blueTossup + "</i>");
 
   // after known results and requested upsets, check how we're doing:
-  clintonSimTotal = findElectors("clinton", simStates);
+  blueSimTotal = findElectors("blue", simStates);
 
   // if there are any "strong blue" states up in the air, give em to Clinton
   strongBlues = _.filter(simStates, {"category": "strong blue"});
   if(strongBlues.length > 0) {
     _.forEach(strongBlues, function(state) {
-      if(!state.winner) state.winner = "clinton";
+      if(!state.winner) state.winner = "blue";
     });
 
-    clintonSimTotal = findElectors("clinton", simStates);
+    blueSimTotal = findElectors("blue", simStates);
     printString = "With all remaining 'strong blue' states: <strong><span";
-    if(clintonSimTotal >= 270)  printString += " style=\"color: green;\""
-    printString +=  ">" + clintonSimTotal + "</span></strong> electoral votes"
+    if(blueSimTotal >= 270)  printString += " style=\"color: green;\""
+    printString +=  ">" + blueSimTotal + "</span></strong> electoral votes"
     printResult(printString);
   }
 
   // if she still needs electors after the strong blues
-  if(clintonSimTotal < 270) {
-    // if there are any "probably blue" states up in the air, give em to Clinton
+  if(blueSimTotal < 270) {
+    // if there are any "probably blue" states up in the air, give em to blue
     if(_.filter(simStates, {"category": "probably blue"}).length > 0) {
       _.forEach(_.filter(simStates, {"category": "probably blue"}), function(state) {
-        if(!state.winner) state.winner = "clinton";
+        if(!state.winner) state.winner = "blue";
       });
 
-      clintonSimTotal = findElectors("clinton", simStates);
+      blueSimTotal = findElectors("blue", simStates);
       printString = "With all remaining 'probably blue' states also: <strong><span";
-      if(clintonSimTotal >= 270)  printString += " style=\"color: green;\""
-      printString +=  ">" + clintonSimTotal + "</span></strong> electoral votes"
+      if(blueSimTotal >= 270)  printString += " style=\"color: green;\""
+      printString +=  ">" + blueSimTotal + "</span></strong> electoral votes"
       printResult(printString);
     }
   }
 
-  // if she still needs electors after the probably blues,
+  // if blue still needs electors after the strong and probably blues
+  if(blueSimTotal < 270) {
+    // if there are any "probably blue" states up in the air, give em to blue
+    if(_.filter(simStates, {"category": "lean blue"}).length > 0) {
+      _.forEach(_.filter(simStates, {"category": "lean blue"}), function(state) {
+        if(!state.winner) state.winner = "blue";
+      });
+
+      blueSimTotal = findElectors("blue", simStates);
+      printString = "With all remaining 'lean blue' states also: <strong><span";
+      if(blueSimTotal >= 270)  printString += " style=\"color: green;\""
+      printString +=  ">" + blueSimTotal + "</span></strong> electoral votes"
+      printResult(printString);
+    }
+  }
+
+  // if blue still needs electors after all the possible blues
   // figure out which toss-ups will do it
-  if(clintonSimTotal < 270) {
-    needed = 270 - clintonSimTotal;
+  if(blueSimTotal < 270) {
+    needed = 270 - blueSimTotal;
     // get sorted list of available toss-ups
     sortedUpForGrabs = _.sortBy(_.filter(simStates, {"category": "toss-up"}), 'electors');
     sortedUpForGrabs = _.filter(sortedUpForGrabs, function(state) {return (state.winner===undefined || state.winner==="");});
@@ -216,13 +234,13 @@ function clintonSim() {
     }
   }
 
-  // also calculate combos using toss-ups AND 'probably reds'
-  if(clintonSimTotal < 270) {
-    printResult("</li></ul><strong>Winning combos that include 'probably reds':</strong><ul>");
-    needed = 270 - clintonSimTotal;
-    // get sorted list of available toss-ups or 'probably reds'
+  // also calculate combos using toss-ups AND 'lean reds'
+  if(blueSimTotal < 270) {
+    printResult("</li></ul><strong>Winning combos that include 'lean reds':</strong><ul>");
+    needed = 270 - blueSimTotal;
+    // get sorted list of available toss-ups or 'lean reds'
     sortedUpForGrabs = _.filter(simStates, {"category": "toss-up"});
-    sortedUpForGrabs = _.concat(sortedUpForGrabs, _.filter(simStates, {"category": "probably red"}));
+    sortedUpForGrabs = _.concat(sortedUpForGrabs, _.filter(simStates, {"category": "lean red"}));
     sortedUpForGrabs = _.sortBy(sortedUpForGrabs, 'electors');
     sortedUpForGrabs = _.filter(sortedUpForGrabs, function(state) {return (state.winner===undefined || state.winner==="");});
     descendingForGrabs = _.reverse(sortedUpForGrabs);
@@ -275,18 +293,18 @@ function clintonSim() {
       for(var i=0; i < options.length; i++) {
         if(Array.isArray(options[i])) {
           hasTossUp = false;
-          hasProbablyRed = false;
+          hasLeanRed = false;
           for(var j = 0; j < options[i].length; j++) {
             switch(options[i][j].category) {
               case "toss-up":
                 hasTossUp = true;
                 break;
-              case "probably red":
-                hasProbablyRed = true;
+              case "lean red":
+                hasLeanRed = true;
                 break;
             }
           }
-          if(!hasProbablyRed) options[i] = "";
+          if(!hasLeanRed) options[i] = "";
         } else {
           if(options[i].category === "toss-up") options[i] = "";
         }
@@ -314,12 +332,12 @@ function clintonSim() {
       }
     }
   }
-} // end of clintonSim()
+} // end of blueSim()
 
-clintonSim();
+blueSim();
 
 // If the user changes a checkbox, run it again.
 document.onclick = function(event) {
    console.log("Re-running simulation.");
-   clintonSim();
+   blueSim();
 };
