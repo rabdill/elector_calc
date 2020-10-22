@@ -236,11 +236,12 @@ function blueSim() {
 
   // also calculate combos using toss-ups AND 'lean reds'
   if(blueSimTotal < 270) {
-    printResult("</li></ul><strong>Winning combos that include 'lean reds':</strong><ul>");
+    printResult("</li></ul><strong>Winning combos that include 'lean reds' and 'probably reds':</strong><ul>");
     needed = 270 - blueSimTotal;
     // get sorted list of available toss-ups or 'lean reds'
     sortedUpForGrabs = _.filter(simStates, {"category": "toss-up"});
     sortedUpForGrabs = _.concat(sortedUpForGrabs, _.filter(simStates, {"category": "lean red"}));
+    sortedUpForGrabs = _.concat(sortedUpForGrabs, _.filter(simStates, {"category": "probably red"}));
     sortedUpForGrabs = _.sortBy(sortedUpForGrabs, 'electors');
     sortedUpForGrabs = _.filter(sortedUpForGrabs, function(state) {return (state.winner===undefined || state.winner==="");});
     descendingForGrabs = _.reverse(sortedUpForGrabs);
