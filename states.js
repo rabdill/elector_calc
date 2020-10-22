@@ -1,4 +1,5 @@
 // https://www.270towin.com/
+// https://projects.fivethirtyeight.com/2020-election-forecast/
 states = [
   {
     "name": "Alabama",
@@ -15,7 +16,7 @@ states = [
   {
     "name": "Arizona",
     "electors": 11,
-    "category": "lean blue",
+    "category": "toss-up",
     "winner": ""
   },
   {
@@ -147,7 +148,7 @@ states = [
   {
     "name": "Michigan",
     "electors": 16,
-    "category": "probably blue",
+    "category": "lean blue",
     "winner": ""
   },
   {
