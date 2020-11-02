@@ -292,7 +292,7 @@ states = [
   {
     "name": "Texas",
     "electors": 38,
-    "category": "lean red",
+    "category": "probably red",
     "winner": ""
   },
   {
