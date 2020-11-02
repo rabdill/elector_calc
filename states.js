@@ -1,3 +1,4 @@
+last_updated = '2 Nov 2020'
 // https://www.270towin.com/
 // https://projects.fivethirtyeight.com/2020-election-forecast/
 states = [
@@ -94,7 +95,7 @@ states = [
   {
     "name": "Iowa",
     "electors": 6,
-    "category": "toss-up",
+    "category": "lean red",
     "winner": ""
   },
   {

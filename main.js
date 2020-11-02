@@ -1,5 +1,9 @@
 var redTotal = 0, blueTotal = 0;
 
+// write the last updated date
+updated = document.getElementById('updated')
+updated.innerHTML = last_updated;
+
 // Add up all the currently decided states
 _.forEach(states, function(state) {
   if(!state.winner) return;
