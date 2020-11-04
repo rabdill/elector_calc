@@ -1,4 +1,4 @@
-last_updated = '2 Nov 2020'
+last_updated = '3 Nov 2020, 8:07 EST'
 // https://www.270towin.com/
 // https://projects.fivethirtyeight.com/2020-election-forecast/
 states = [
@@ -6,7 +6,7 @@ states = [
     "name": "Alabama",
     "electors" : 9,
     "category": "strong red",
-    "winner": ""
+    "winner": "red"
   },
   {
     "name": "Alaska",
@@ -42,7 +42,7 @@ states = [
     "name": "Connecticut",
     "electors": 7,
     "category": "strong blue",
-    "winner": ""
+    "winner": "blue"
   },
   {
     "name": "DC",
@@ -54,7 +54,7 @@ states = [
     "name": "Delaware",
     "electors": 3,
     "category": "strong blue",
-    "winner": ""
+    "winner": "blue"
   },
   {
     "name": "<strong>Florida</strong>",
@@ -84,7 +84,7 @@ states = [
     "name": "Illinois",
     "electors": 20,
     "category": "strong blue",
-    "winner": ""
+    "winner": "blue"
   },
   {
     "name": "Indiana",
@@ -108,7 +108,7 @@ states = [
     "name": "Kentucky",
     "electors": 8,
     "category": "strong red",
-    "winner": ""
+    "winner": "red"
   },
   {
     "name": "Louisiana",
@@ -138,13 +138,13 @@ states = [
     "name": "Maryland",
     "electors": 10,
     "category": "strong blue",
-    "winner": ""
+    "winner": "blue"
   },
   {
     "name": "Massachusetts",
     "electors": 11,
     "category": "strong blue",
-    "winner": ""
+    "winner": "blue"
   },
   {
     "name": "Michigan",
@@ -162,7 +162,7 @@ states = [
     "name": "Mississippi",
     "electors": 6,
     "category": "strong red",
-    "winner": ""
+    "winner": "red"
   },
   {
     "name": "Missouri",
@@ -216,7 +216,7 @@ states = [
     "name": "New Jersey",
     "electors": 14,
     "category": "strong blue",
-    "winner": ""
+    "winner": "blue"
   },
   {
     "name": "New Mexico",
@@ -252,7 +252,7 @@ states = [
     "name": "Oklahoma",
     "electors": 7,
     "category": "strong red",
-    "winner": ""
+    "winner": "red"
   },
   {
     "name": "Oregon",
@@ -270,13 +270,13 @@ states = [
     "name": "Rhode Island",
     "electors": 4,
     "category": "strong blue",
-    "winner": ""
+    "winner": "blue"
   },
   {
     "name": "South Carolina",
     "electors": 9,
     "category": "probably red",
-    "winner": ""
+    "winner": "red"
   },
   {
     "name": "South Dakota",
@@ -288,7 +288,7 @@ states = [
     "name": "Tennessee",
     "electors": 11,
     "category": "strong red",
-    "winner": ""
+    "winner": "red"
   },
   {
     "name": "Texas",
@@ -306,13 +306,13 @@ states = [
     "name": "Vermont",
     "electors": 3,
     "category": "strong blue",
-    "winner": ""
+    "winner": "blue"
   },
   {
     "name": "Virginia",
     "electors": 13,
     "category": "probably blue",
-    "winner": ""
+    "winner": "blue"
   },
   {
     "name": "Washington",
@@ -324,7 +324,7 @@ states = [
     "name": "West Virginia",
     "electors": 5,
     "category": "strong red",
-    "winner": ""
+    "winner": "red"
   },
   {
     "name": "<strong>Wisconsin</strong>",
