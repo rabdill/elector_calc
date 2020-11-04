@@ -48,7 +48,7 @@ states = [
     "name": "DC",
     "electors": 3,
     "category": "strong blue",
-    "winner": ""
+    "winner": "blue"
   },
   {
     "name": "Delaware",
@@ -186,13 +186,13 @@ states = [
     "name": "Nebraska District 1",
     "electors": 1,
     "category": "strong red",
-    "winner": "red"
+    "winner": ""
   },
   {
     "name": "Nebraska District 2",
     "electors": 1,
     "category": "lean blue",
-    "winner": "red"
+    "winner": ""
   },
   {
     "name": "Nebraska District 3",
