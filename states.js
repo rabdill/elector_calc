@@ -1,4 +1,4 @@
-last_updated = '3 Nov 2020, 10:45 EST'
+last_updated = '3 Nov 2020, 11:02 EST'
 // https://www.270towin.com/
 // https://projects.fivethirtyeight.com/2020-election-forecast/
 states = [
@@ -30,7 +30,7 @@ states = [
     "name": "California",
     "electors": 55,
     "category": "strong blue",
-    "winner": ""
+    "winner": "blue"
   },
   {
     "name": "Colorado",
@@ -78,7 +78,7 @@ states = [
     "name": "Idaho",
     "electors": 4,
     "category": "strong red",
-    "winner": ""
+    "winner": "red"
   },
   {
     "name": "Illinois",
@@ -210,7 +210,7 @@ states = [
     "name": "New Hampshire",
     "electors": 4,
     "category": "probably blue",
-    "winner": ""
+    "winner": "blue"
   },
   {
     "name": "New Jersey",
@@ -258,7 +258,7 @@ states = [
     "name": "Oregon",
     "electors": 7,
     "category": "strong blue",
-    "winner": ""
+    "winner": "blue"
   },
   {
     "name": "Pennsylvania",
@@ -318,7 +318,7 @@ states = [
     "name": "Washington",
     "electors": 12,
     "category": "strong blue",
-    "winner": ""
+    "winner": "blue"
   },
   {
     "name": "West Virginia",
