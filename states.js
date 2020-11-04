@@ -1,4 +1,4 @@
-last_updated = '4 Nov 2020, 12:19 EST'
+last_updated = '4 Nov 2020, 12:36 EST'
 // https://www.270towin.com/
 // https://projects.fivethirtyeight.com/2020-election-forecast/
 states = [
@@ -60,7 +60,7 @@ states = [
     "name": "<strong>Florida</strong>",
     "electors": 29,
     "category": "toss-up",
-    "winner": ""
+    "winner": "red"
   },
   {
     "name": "<strong>Georgia</strong>",
