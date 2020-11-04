@@ -1,4 +1,4 @@
-last_updated = '4 Nov 2020, 1:10 EST'
+last_updated = '4 Nov 2020, 1:35 EST'
 // https://www.270towin.com/
 // https://projects.fivethirtyeight.com/2020-election-forecast/
 states = [
@@ -186,13 +186,13 @@ states = [
     "name": "Nebraska District 1",
     "electors": 1,
     "category": "strong red",
-    "winner": ""
+    "winner": "red"
   },
   {
     "name": "Nebraska District 2",
     "electors": 1,
     "category": "lean blue",
-    "winner": ""
+    "winner": "blue"
   },
   {
     "name": "Nebraska District 3",
