@@ -1,4 +1,4 @@
-last_updated = '3 Nov 2020, 8:07 EST'
+last_updated = '3 Nov 2020, 8:36 EST'
 // https://www.270towin.com/
 // https://projects.fivethirtyeight.com/2020-election-forecast/
 states = [
@@ -15,7 +15,7 @@ states = [
     "winner": ""
   },
   {
-    "name": "Arizona",
+    "name": "<strong>Arizona</strong>",
     "electors": 11,
     "category": "toss-up",
     "winner": ""
@@ -24,7 +24,7 @@ states = [
     "name": "Arkansas",
     "electors": 6,
     "category": "strong red",
-    "winner": ""
+    "winner": "red"
   },
   {
     "name": "California",
@@ -95,7 +95,7 @@ states = [
   {
     "name": "Iowa",
     "electors": 6,
-    "category": "lean red",
+    "category": "probably red",
     "winner": ""
   },
   {
@@ -201,7 +201,7 @@ states = [
     "winner": ""
   },
   {
-    "name": "<strong>Nevada</strong>",
+    "name": "Nevada",
     "electors": 6,
     "category": "lean blue",
     "winner": ""
@@ -243,7 +243,7 @@ states = [
     "winner": ""
   },
   {
-    "name": "Ohio",
+    "name": "<strong>Ohio</strong>",
     "electors": 18,
     "category": "toss-up",
     "winner": ""
@@ -327,7 +327,7 @@ states = [
     "winner": "red"
   },
   {
-    "name": "<strong>Wisconsin</strong>",
+    "name": "Wisconsin",
     "electors": 10,
     "category": "lean blue",
     "winner": ""
