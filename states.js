@@ -1,4 +1,4 @@
-last_updated = '4 Nov 2020, 12:13 EST'
+last_updated = '4 Nov 2020, 12:19 EST'
 // https://www.270towin.com/
 // https://projects.fivethirtyeight.com/2020-election-forecast/
 states = [
@@ -156,7 +156,7 @@ states = [
     "name": "Minnesota",
     "electors": 10,
     "category": "lean blue",
-    "winner": ""
+    "winner": "blue"
   },
   {
     "name": "Mississippi",
