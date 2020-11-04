@@ -96,7 +96,7 @@ states = [
     "name": "Iowa",
     "electors": 6,
     "category": "probably red",
-    "winner": ""
+    "winner": "red"
   },
   {
     "name": "Kansas",
@@ -174,7 +174,7 @@ states = [
     "name": "Montana",
     "electors": 3,
     "category": "probably red",
-    "winner": ""
+    "winner": "red"
   },
   {
     "name": "Nebraska statewide",
@@ -246,7 +246,7 @@ states = [
     "name": "<strong>Ohio</strong>",
     "electors": 18,
     "category": "toss-up",
-    "winner": ""
+    "winner": "red"
   },
   {
     "name": "Oklahoma",
