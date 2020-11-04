@@ -1,4 +1,4 @@
-last_updated = '3 Nov 2020, 11:13 EST'
+last_updated = '4 Nov 2020, 12:13 EST'
 // https://www.270towin.com/
 // https://projects.fivethirtyeight.com/2020-election-forecast/
 states = [
@@ -72,7 +72,7 @@ states = [
     "name": "Hawaii",
     "electors": 4,
     "category": "strong blue",
-    "winner": ""
+    "winner": "blue"
   },
   {
     "name": "Idaho",
