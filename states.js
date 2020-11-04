@@ -1,4 +1,4 @@
-last_updated = '4 Nov 2020, 12:36 EST'
+last_updated = '4 Nov 2020, 1:10 EST'
 // https://www.270towin.com/
 // https://projects.fivethirtyeight.com/2020-election-forecast/
 states = [
@@ -294,7 +294,7 @@ states = [
     "name": "Texas",
     "electors": 38,
     "category": "probably red",
-    "winner": ""
+    "winner": "red"
   },
   {
     "name": "Utah",
