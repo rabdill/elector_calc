@@ -1,4 +1,4 @@
-last_updated = '3 Nov 2020, 8:36 EST'
+last_updated = '3 Nov 2020, 9:13 EST'
 // https://www.270towin.com/
 // https://projects.fivethirtyeight.com/2020-election-forecast/
 states = [
@@ -90,7 +90,7 @@ states = [
     "name": "Indiana",
     "electors": 11,
     "category": "probably red",
-    "winner": ""
+    "winner": "red"
   },
   {
     "name": "Iowa",
@@ -114,7 +114,7 @@ states = [
     "name": "Louisiana",
     "electors": 8,
     "category": "strong red",
-    "winner": ""
+    "winner": "red"
   },
   {
     "name": "Maine statewide",
@@ -180,25 +180,25 @@ states = [
     "name": "Nebraska statewide",
     "electors": 2,
     "category": "strong red",
-    "winner": ""
+    "winner": "red"
   },
   {
     "name": "Nebraska District 1",
     "electors": 1,
     "category": "strong red",
-    "winner": ""
+    "winner": "red"
   },
   {
     "name": "Nebraska District 2",
     "electors": 1,
     "category": "lean blue",
-    "winner": ""
+    "winner": "red"
   },
   {
     "name": "Nebraska District 3",
     "electors": 1,
     "category": "strong red",
-    "winner": ""
+    "winner": "red"
   },
   {
     "name": "Nevada",
@@ -222,13 +222,13 @@ states = [
     "name": "New Mexico",
     "electors": 5,
     "category": "probably blue",
-    "winner": ""
+    "winner": "blue"
   },
   {
     "name": "New York",
     "electors": 29,
     "category": "strong blue",
-    "winner": ""
+    "winner": "blue"
   },
   {
     "name": "<strong>North Carolina</strong>",
@@ -240,7 +240,7 @@ states = [
     "name": "North Dakota",
     "electors": 3,
     "category": "strong red",
-    "winner": ""
+    "winner": "red"
   },
   {
     "name": "<strong>Ohio</strong>",
@@ -282,7 +282,7 @@ states = [
     "name": "South Dakota",
     "electors": 3,
     "category": "strong red",
-    "winner": ""
+    "winner": "red"
   },
   {
     "name": "Tennessee",
@@ -336,6 +336,6 @@ states = [
     "name": "Wyoming",
     "electors": 3,
     "category": "strong red",
-    "winner": ""
+    "winner": "red"
   }
 ];
