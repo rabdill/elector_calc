@@ -1,4 +1,4 @@
-last_updated = '4 Nov 2020, 1:35 EST'
+last_updated = '4 Nov 2020, 11:55 EST'
 // https://www.270towin.com/
 // https://projects.fivethirtyeight.com/2020-election-forecast/
 states = [
@@ -18,7 +18,7 @@ states = [
     "name": "<strong>Arizona</strong>",
     "electors": 11,
     "category": "toss-up",
-    "winner": ""
+    "winner": "blue"
   },
   {
     "name": "Arkansas",
@@ -120,13 +120,13 @@ states = [
     "name": "Maine statewide",
     "electors": 2,
     "category": "strong blue",
-    "winner": ""
+    "winner": "blue"
   },
   {
     "name": "Maine District 1",
     "electors": 1,
     "category": "probably blue",
-    "winner": ""
+    "winner": "blue"
   },
   {
     "name": "<strong>Maine District 2</strong>",
