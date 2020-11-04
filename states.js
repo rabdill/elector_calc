@@ -132,7 +132,7 @@ states = [
     "name": "<strong>Maine District 2</strong>",
     "electors": 1,
     "category": "toss-up",
-    "winner": ""
+    "winner": "red"
   },
   {
     "name": "Maryland",
