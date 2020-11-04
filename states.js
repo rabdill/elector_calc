@@ -1,4 +1,4 @@
-last_updated = '3 Nov 2020, 9:13 EST'
+last_updated = '3 Nov 2020, 9:33 EST'
 // https://www.270towin.com/
 // https://projects.fivethirtyeight.com/2020-election-forecast/
 states = [
