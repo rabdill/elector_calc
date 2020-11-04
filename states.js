@@ -1,4 +1,4 @@
-last_updated = '3 Nov 2020, 9:33 EST'
+last_updated = '3 Nov 2020, 10:17 EST'
 // https://www.270towin.com/
 // https://projects.fivethirtyeight.com/2020-election-forecast/
 states = [
@@ -36,7 +36,7 @@ states = [
     "name": "Colorado",
     "electors": 9,
     "category": "probably blue",
-    "winner": ""
+    "winner": "blue"
   },
   {
     "name": "Connecticut",
@@ -102,7 +102,7 @@ states = [
     "name": "Kansas",
     "electors": 6,
     "category": "probably red",
-    "winner": ""
+    "winner": "red"
   },
   {
     "name": "Kentucky",
